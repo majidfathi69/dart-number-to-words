@@ -4,10 +4,11 @@ version: 0.1.1
 author: Matiullah Karimi <matiullah.karimi@gmail.com>
 homepage: https://github.com/matiullah-karimi/dart-number-to-words
 
-environment:
-    sdk: ">=2.1.0 <3.0.0"
 
-dependencies:
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+#dependencies:
 
 dev_dependencies:
-    test: ^1.6.3
+  test: ^1.16.0

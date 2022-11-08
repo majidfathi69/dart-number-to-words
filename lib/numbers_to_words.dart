@@ -1,8 +1,8 @@
 import 'numbers_helper.dart';
 
 class NumberToWords {
-  static String _convertLessThanOneThousand(int number, String locale) {
-    String soFar;
+  static String? _convertLessThanOneThousand(int number, String locale) {
+    String? soFar;
     final numNames = getNumsNames(locale);
     final hundredNames = getHundredNames(locale);
     final tensNames = getTensNames(locale);
@@ -26,7 +26,7 @@ class NumberToWords {
 
     // return hundredNames[number] +
     return hundredNames[number] +
-        (hundredNames[number].length != 0 && soFar.length != 0
+        (hundredNames[number].length != 0 && soFar!.length != 0
             ? getAnd(locale) + soFar.toString()
             : soFar);
   }
@@ -50,7 +50,7 @@ class NumberToWords {
     String tradBillions = _getBillions(billions, locale);
     String tradMillions = _getMillions(millions, locale);
     String tradHundredThousands = _getThousands(hundredThousands, locale);
-    String tradThousand = _convertLessThanOneThousand(thousands, locale);
+    String? tradThousand = _convertLessThanOneThousand(thousands, locale);
 
     String result = tradBillions;
 
@@ -69,9 +69,9 @@ class NumberToWords {
         ((tradBillions.length != 0 ||
                     tradMillions.length != 0 ||
                     tradHundredThousands.length != 0) &&
-                tradThousand.length != 0
+                tradThousand!.length != 0
             ? getAnd(locale) + tradThousand.toString()
-            : tradThousand);
+            : tradThousand!);
 
     // remove extra spaces!
     return result.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
@@ -85,12 +85,12 @@ class NumberToWords {
         tradBillions = "";
         break;
       case 1:
-        tradBillions = lessThanOneThousand +
+        tradBillions = lessThanOneThousand! +
             (lessThanOneThousand.length > 0 ? " " : "") +
             "${getBillion(locale)}";
         break;
       default:
-        tradBillions = lessThanOneThousand +
+        tradBillions = lessThanOneThousand! +
             (lessThanOneThousand.length > 0 ? " " : "") +
             "${getBillion(locale)}";
     }
@@ -106,12 +106,12 @@ class NumberToWords {
         tradMillions = "";
         break;
       case 1:
-        tradMillions = lessThanOneThousand +
+        tradMillions = lessThanOneThousand! +
             (lessThanOneThousand.length > 0 ? " " : "") +
             "${getMillion(locale)}";
         break;
       default:
-        tradMillions = lessThanOneThousand +
+        tradMillions = lessThanOneThousand! +
             (lessThanOneThousand.length > 0 ? " " : "") +
             "${getMillion(locale)}";
     }
@@ -128,12 +128,12 @@ class NumberToWords {
         tradHundredThousands = "";
         break;
       case 1:
-        tradHundredThousands = lessThanOneThousand +
+        tradHundredThousands = lessThanOneThousand! +
             (lessThanOneThousand.length > 0 ? " " : "") +
             "${getThousand(locale)}";
         break;
       default:
-        tradHundredThousands = lessThanOneThousand +
+        tradHundredThousands = lessThanOneThousand! +
             (lessThanOneThousand.length > 0 ? " " : "") +
             "${getThousand(locale)}";
     }
@@ -142,7 +142,7 @@ class NumberToWords {
   }
 
   static bool isNumeric(String nums) {
-    if (nums == null || nums.trim().isEmpty) {
+    if (nums.trim().isEmpty) {
       return false;
     }
 
